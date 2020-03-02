@@ -11,8 +11,10 @@
 
     <!--配置文件路径-->
     <properties resource="generator/config.properties"/>
-
+    <!--2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；-->
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <!--继承通用mapper-->
@@ -31,6 +33,11 @@
                         connectionURL="${jdbc.url}"
                         userId="${jdbc.user}"
                         password="${jdbc.password}">
+            <!--introspectedTable.getRemarks() 取值为空时 添加下属性  需要在url 里指定编码 utf8  如：mysql  ?characterEncoding=utf8   -->
+            <!-- 针对oracle数据库 -->
+            <!--<property name="remarksReporting" value="true"></property>-->
+            <!--针对mysql数据库-->
+            <property name="useInformationSchema" value="true" />
         </jdbcConnection>
         <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
         <javaTypeResolver type="com.cf.provider.mybatis.generator.MyJavaTypeResolverImpl">
