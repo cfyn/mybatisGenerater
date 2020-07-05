@@ -1,4 +1,4 @@
-# mybatis 自动生成代码
+# mybatis 自动生成通用mapper代码
 ## mybatis generator
 **generator**
  ###带通用mapper 自动反编译生成xml mapper
